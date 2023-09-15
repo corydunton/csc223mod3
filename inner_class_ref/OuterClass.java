@@ -1,4 +1,4 @@
-package inner_class_ref;
+ package inner_class_ref;
 
 // Simple program for you to run and learn how Inner Classes work
 
