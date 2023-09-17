@@ -1,7 +1,7 @@
 package edu.vwcc.football;
 
-public class Team {
-	private String nickname;
+public class Team implements Comparable<Team> {
+	String nickname;
 	private int wins;
 	private int losses;
 
@@ -35,6 +35,10 @@ public class Team {
 	@Override
 	public String toString() {
 		return String.format("Team: %-16s Wins: %-2d Losses: %-2d", nickname, wins, losses);
+	}
+
+	public int compareTo(Team other) {
+		return Integer.compare(this.getWins(), other.getWins());
 	}
 
 	// getters and setters

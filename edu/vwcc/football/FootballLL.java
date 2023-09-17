@@ -1,5 +1,8 @@
 package edu.vwcc.football;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 import LinkedListPractice.Link;
 
@@ -178,81 +181,69 @@ public class FootballLL {
 	}
 
 	// TODO return the Team or null if not found
-	public Link find(Team nickname) {
+	public Team find(String nickname) {
 		Node ref = first;
-		while (ref != null) {
-			System.out.println(ref.nickname + " ");
-			ref = ref.next;
-		}
-		
-		return first;
 
-//		if (!isEmpty()) {
-//			while (theLink.bookName != bookName) {
-//				if (theLink.next == null) {
-//					return null;
-//				} else {
-//					theLink = theLink.next;
-//				}
-//			}
-//		} else {
-//			System.out.println("Empty LinkedList");
-//		}
-//
-//		return theLink;
-	}
-	
-	// TODO return the team with the most wins. Very similar to find()
-	public Link mostWins(Team nickname) {
-		Node ref = first;
 		while (ref != null) {
-			System.out.println(ref.nickname + " ");
+			if (ref.nickname.getNickname().equals(nickname)) {
+				return ref.nickname;
+			}
 			ref = ref.next;
 		}
-		
-		return first;
+
+		return null;
 	}
-	
+
+	// TODO return the team with the most wins. Very similar to find()
+	public Team mostWins() {
+		Node ref = first;
+		Team mostWinsTeam = null;
+
+		while (ref != null) {
+			if (mostWinsTeam == null || ref.nickname.getWins() > mostWinsTeam.getWins()) {
+				mostWinsTeam = ref.nickname;
+			}
+			ref = ref.next;
+		}
+
+		return mostWinsTeam;
+	}
+
 	// TODO return the team with the worst winning percentage
-	// Similar to the two above. Note that the Team class provides a winning percentage method
-	public int worstWinPct(Team nickname) {
-		return 0;
+	// Similar to the two above. Note that the Team class provides a winning
+	// percentage method
+	public Team worstWinPct() {
+		Node ref = first;
+		Team worstWinPctTeam = null;
+
+		while (ref != null) {
+			if (worstWinPctTeam == null || ref.nickname.winningPercentage() < worstWinPctTeam.winningPercentage()) {
+				worstWinPctTeam = ref.nickname;
+			}
+			ref = ref.next;
+		}
+
+		return worstWinPctTeam;
 	}
-	
+
 	// TODO print out the linked list from most to least wins
-	// Implement Comparable on the Team. Have the method copy each item into an ArrayList
+	// Implement Comparable on the Team. Have the method copy each item into an
+	// ArrayList
 	// Collections.sort() on ArrayList
 	public void printOrdered() {
-		
+		List<Team> teamList = new ArrayList<>();
+		Node ref = first;
+
+		while (ref != null) {
+			teamList.add(ref.nickname);
+			ref = ref.next;
+		}
+
+		Collections.sort(teamList);
+
+		for (Team team : teamList) {
+			System.out.println(team.toString());
+		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
